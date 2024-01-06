@@ -2,14 +2,22 @@ require 'nokogiri'
 require 'open-uri'
 require 'csv'
 
-url = 'https://en.wikipedia.org/wiki/Indonesia'
-document = Nokogiri::HTML(URI.open(url))
+class Scraper
 
-headlines = document.css('span.mw-headline').map(&:text)
-puts headlines
+    def self.scrape_headlines(url)
 
-CSV.open('headlines.csv', 'w') do |csv|
-    headlines.each do |headline|
-        csv << [headline]
+        # url = 'https://en.wikipedia.org/wiki/Indonesia'
+        document = Nokogiri::HTML(URI.open(url))
+        p document.to_html
+        headlines = document.css('span.mw-headline').map(&:text)
+        p headlines
+        headlines
     end
-end
+
+            # CSV.open('headlines.csv', 'w') do |csv|
+        #     headlines.each do |headline|
+        #         csv << [headline]
+        #     end
+        # end
+
+end 
