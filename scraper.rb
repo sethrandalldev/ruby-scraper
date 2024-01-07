@@ -4,7 +4,7 @@ require 'csv'
 
 class Scraper
 
-    def self.scrape_headlines(url)
+    def self.scrape_headlines(url)m
 
         # url = 'https://en.wikipedia.org/wiki/Indonesia'
         document = Nokogiri::HTML(URI.open(url))
@@ -14,10 +14,10 @@ class Scraper
         headlines
     end
 
-            # CSV.open('headlines.csv', 'w') do |csv|
-        #     headlines.each do |headline|
-        #         csv << [headline]
-        #     end
-        # end
-
+    def self.save_data_to_csv(file_name, data)
+        CSV.open(file_name, 'w') do |csv|
+        data.each do |row|
+            csv << [row]
+        end
+    end
 end 
